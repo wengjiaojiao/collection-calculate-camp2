@@ -1,101 +1,68 @@
-
-function _ () {
-
-}
-
-_.foreach = function(collection,fun) {
-    for (var i = 0; i < collection.length; i++) {
-        fun(collection[i],i);
+function _(collection) {
+    if(!(this instanceof _)) {
+        return new _(collection);
     }
+    this.collection = collection;
 }
-
-
-_.map = function(collection,fun) {
-    var result = [];
-
-    _.foreach(collection,function(n) {
-        result.push(fun(n));
-    });
-    return result;
-}
-
-
-_.exist = function(collection,element) {
-    var result = false;
-
-    _.foreach(collection,function(n){
-        if(n === element) {
-            result = true;
+_.prototype = {
+    contructor:_,
+    each:function(fun) {
+        for (var i = 0; i < this.collection.length; i++) {
+            fun(this.collection[i], i);
         }
-    });
-    return result;
-}
-
-
-_.filter = function(collection,fun) {
-    var result = [] ;
-
-    _.foreach(collection,function(n, i) {
-        if(fun(n, i)) {
-            result.push(n);
-        }
-    });
-    return result;
-}
-
-
-_.reduce = function(collection,fun) {
-    var result = collection[0];
-
-    _.foreach(collection,function(n,i) {
-        if(i === 0) {
-            result = collection[i];
-        }else {
-            result = fun(result,n);
-        }
-    });
-    return result;
-}
-
-
-_.rank = function(collection, fun) {
-    var number;
-
-    for (var i = 0; i < collection.length; i++) {
-        for (var j = i + 1; j < collection.length; j++) {
-            if(fun(collection[i], collection[j])) {
-                number = collection[i];
-                collection[i] = collection[j];
-                collection[j] = number;
+    },
+    map:function(fun) {
+        var result = [];
+        this.each(function(n) {
+            result.push(fun(n));
+        });
+        this.collection = result;
+        return this;
+    },
+    filter:function(fun) {
+        var result = [];
+        this.each(function(n, i) {
+            if(fun(n, i)) {
+                result.push(n);
             }
+        });
+        this.collection = result;
+        return this;
+    },
+    reduce:function(fun) {
+        var result = this.collection[0];
+        this.each(function(n, i) {
+            if(i === 0) {
+                result = n;
+            }else {
+                result = fun(result,n);
+            }
+        });
+        this.collection = result;
+        return this;
+    },
+    range:function(a, b) {
+        var step = Math.abs(b - a) / (b - a);
+        var count = (b - a) / step;
+        var result = [];
+        for(var i = 0; i <= count; i++) {
+            var item = a + i *step;
+            result.push(item);
         }
+        return result;
+    },
+    exist:function(element) {
+        var result = false;
+        this.each(function(n, i) {
+            if(n === element) {
+                result = true;
+            }
+        });
+        return result;
+    },
+    value:function() {
+        return this.collection;
     }
-    return collection;
 }
 
-
-_.range = function(a, b) {
-    var step = Math.abs(b - a) / (b - a);
-    var count = (b - a) / step;
-    var result = [];
-
-    for (var i = 0; i <= count; i++) {
-        var item = a + i * step;
-        result.push(item);
-    }
-    return result;
-}
-
-
-_.median = function(collection) {
-    var median;
-    var middle = parseInt(collection.length / 2);
-
-    if(collection.length % 2 ===0) {
-        median = (collection[middle] + collection[middle - 1]) / 2;
-    }else {
-        median = collection[middle];
-    }
-    return median;
-}
 module.exports = _;
