@@ -3,13 +3,9 @@ var _ = require('../../mylodash.js');
 
 function collect_all_even(collection) {
 
-
-    return _.filter(collection,even);
+    return _(collection).filter(function(n) {
+        return n % 2 === 0;
+    }).value();
 }
 
-function even(n) {
-    if (n % 2 ==0) {
-        return n;
-    }
-}
 module.exports = collect_all_even;
