@@ -1,29 +1,12 @@
 'use strict';
+var _ = require('../../mylodash.js');
 
 function get_intersection(collection_a, collection_b) {
     var result = [];
 
-    each(collection_b, function(n) {
-        if(exist(collection_a, n)) {
+    _(collection_b).each(function(n) {
+        if(_(collection_a).exist(n)) {
             result.push(n);
-        }
-    });
-    return result;
-}
-
-
-
-function each(collection, fun) {
-    for (var i = 0; i < collection.length; i++) {
-        fun(collection[i],i);
-    }
-}
-function exist(collection, element) {
-    var result = false;
-
-    each(collection, function(n, i) {
-        if(n === element) {
-            result = true;
         }
     });
     return result;
