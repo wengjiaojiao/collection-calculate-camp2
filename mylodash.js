@@ -47,6 +47,19 @@ _.prototype = {
         });
         return this;
     },
+    max:function() {
+        this.reduce(function(a, b) {
+            var max;
+            if(a < b) {
+                max = b;
+                return b;
+            }else {
+                max = a;
+                return a;
+            }
+        });
+        return this;
+    },
     range:function(a, b) {
         var step = Math.abs(b - a) / (b - a);
         var count = (b - a) / step;
