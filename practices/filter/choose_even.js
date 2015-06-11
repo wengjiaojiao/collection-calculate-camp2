@@ -2,34 +2,8 @@
 var _ = require('../../mylodash.js');
 
 function choose_even(collection) {
-
-
-    return _.filter(collection,evens);
-}
-
-function evens(n) {
-        return n % 2 == 0;
+    return _(collection).filter(function(n) {
+        return n % 2 ===0;
+    }).value();
 }
 module.exports = choose_even;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*var evens = _.remove(collection, function(n) {
-return n % 2 == 0;
-});
-
-return evens;
-*/
