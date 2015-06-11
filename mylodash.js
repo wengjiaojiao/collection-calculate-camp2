@@ -90,6 +90,15 @@ _.prototype = {
         });
         return result;
     },
+    last:function(element) {
+        var result = true;
+        this.each(function(n, i) {
+            if(n === element) {
+                result = i;
+            }
+        });
+        return result;
+    },
     value:function() {
         return this.collection;
     }
