@@ -2,9 +2,6 @@
 var _ = require("../../mylodash.js");
 
 function compute_average(collection) {
-    return _.reduce(collection,sum)/collection.length;
-}
-function sum(a,b) {
-    return a + b;
+    return _(collection).sum().value()/collection.length;
 }
 module.exports = compute_average;
