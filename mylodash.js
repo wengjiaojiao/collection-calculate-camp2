@@ -79,6 +79,17 @@ _.prototype = {
         }
         return this;
     },
+    first:function(element) {
+        var result = 0;
+        var exist = true;
+        this.each(function(n, i) {
+            if(n === element && exist) {
+                result = i;
+                exist = false;
+            }
+        });
+        return result;
+    },
     value:function() {
         return this.collection;
     }
