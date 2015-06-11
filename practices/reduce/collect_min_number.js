@@ -2,10 +2,6 @@
 var _ = require("../../mylodash.js");
 
 function collect_min_number(collection) {
-    return _.reduce(collection,min);
-}
-
-function min(a,b) {
-    return Math.min(a,b);
+    return _(collection).min().value();
 }
 module.exports = collect_min_number;
