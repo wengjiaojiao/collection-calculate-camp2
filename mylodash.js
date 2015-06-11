@@ -60,6 +60,19 @@ _.prototype = {
         });
         return result;
     },
+    rank:function(fun) {
+        var number;
+        for (var i = 0; i < this.collection.length; i++) {
+            for (var j = i + 1; j < this.collection.length; j++) {
+                if(fun(this.collection[i], this.collection[j])) {
+                    number = this.collection[i];
+                    this.collection[i] = this.collection[j];
+                    this.collection[j] = number;
+                }
+            }
+        }
+        return this;
+    },
     value:function() {
         return this.collection;
     }
