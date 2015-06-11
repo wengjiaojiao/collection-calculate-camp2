@@ -41,6 +41,12 @@ _.prototype = {
         this.collection = result;
         return this;
     },
+    sum:function() {
+        this.reduce(function(a, b) {
+            return a + b;
+        });
+        return this;
+    },
     range:function(a, b) {
         var step = Math.abs(b - a) / (b - a);
         var count = (b - a) / step;
