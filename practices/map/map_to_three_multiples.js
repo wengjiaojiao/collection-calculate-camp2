@@ -2,10 +2,8 @@
  var _ = require("../../mylodash.js");
 
 var map_to_three_multiples = function(collections){
-    return _.map(collections,three);
-}
-
-function three(n) {
-    return n * 3;
+    return _(collections).map(function(n) {
+        return n * 3;
+    }).value();
 }
 module.exports = map_to_three_multiples;
