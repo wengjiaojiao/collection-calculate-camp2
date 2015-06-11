@@ -125,6 +125,17 @@ _.prototype = {
         });
         return result;
     },
+    median:function() {
+        var median;
+        var middle = parseInt(this.collection.length / 2);
+
+        if(this.collection.length % 2 ===0) {
+            median = (this.collection[middle] + this.collection[middle - 1]) / 2;
+        }else {
+            median = this.collection[middle];
+        }
+        return median;
+    },
     value:function() {
         return this.collection;
     }
