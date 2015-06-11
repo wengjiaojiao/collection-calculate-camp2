@@ -60,6 +60,19 @@ _.prototype = {
         });
         return this;
     },
+    min:function() {
+        this.reduce(function(a, b) {
+            var min;
+            if(a > b) {
+                min = b;
+                return b;
+            }else {
+                min = a;
+                return a;
+            }
+        });
+        return this;
+    },
     range:function(a, b) {
         var step = Math.abs(b - a) / (b - a);
         var count = (b - a) / step;
